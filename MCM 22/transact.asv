@@ -1,0 +1,22 @@
+function newHoldings = transact(currentWeights, optimalWeights, currentHoldings)
+
+    %take in two 3 element weight vectors and a vector with asset values,
+    %return new Portfolio 
+    %currentHoldings measures assets in USD
+    alphaG = 0.01;
+    alphaB = 0.02;
+    delta = optimalWeights - currentWeights;
+   
+
+    theoreticalCash = sum(currentHoldings);
+    deltaAssets = (delta * theoreticalCash); % change in cash value for every asset
+
+    fees = [0, alphaG, alphaB] .*abs(deltaAssets);
+
+    newHoldings = currentHoldings + deltaAssets - fees;
+    
+   
+    
+
+
+
